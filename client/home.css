@@ -1,0 +1,29 @@
+/* CSS declarations go here */
+.title {
+    text-align: center;
+}
+
+.new_playlist, .playlist_toogle, .playlist, .library, .sort_type, .edit_playlist{
+    cursor: pointer;
+}
+
+.nopadding {
+    padding:0
+}
+
+.nopadding-right {
+    padding-right: 0;
+}
+.nav.active a{
+    color:white;
+}
+
+.sort_type.active {
+    color: white;
+    background-color: #337ab7;
+}
+.add_to_pl {
+    display: none;
+    zoom:2;
+    top: 7px;
+}

@@ -1,0 +1,107 @@
+<template name="home">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <h1 class="title">{{page_title}}</h1>
+            <div class="container-fluid">
+                <div class="col-xs-4">
+                    <ul class="list-group">
+                        <li class="nav list-group-item active" data-page="library"><a
+                                class="library nopadding">Library</a></li>
+                        <li class="nav nav-title list-group-item">
+                            <div class="row">
+                                <div class="col-xs-7 nopadding-right">
+                                    <a class="playlist_toogle nopadding">My PlayList</a>
+                                </div>
+                                <div class="col-xs-3 nopadding">
+                                    <span class="glyphicon glyphicon-plus new_playlist" id="add_new_playlist"></span>
+                                </div>
+                                <div class="col-xs-2 nopadding">
+                                    {{#if isExpanded}}
+                                        <span class="playlist_toogle glyphicon glyphicon-chevron-up"></span>
+                                    {{else}}
+                                        <span class="playlist_toogle glyphicon glyphicon-chevron-down"></span>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </li>
+                        {{#if isExpanded}}
+                            {{#each playlist}}
+                                <li class="nav list-group-item" data-page="playlist">
+                                    <div class="col-xs-10 nopadding-right">
+                                        <a class="playlist nopadding">{{name}}</a>
+                                    </div>
+                                    <div class="col-xs-1 nopadding">
+                                        <span class="playlist glyphicon glyphicon-pencil edit_playlist"></span>
+                                    </div>
+                                    <div class="col-xs-1 nopadding">
+                                        <span class="playlist glyphicon glyphicon-trash remove_playlist"></span>
+                                    </div>
+                                </li>
+                            {{/each}}
+                        {{/if}}
+                    </ul>
+                </div>
+                <div class="col-xs-6">
+
+                    <div class="row">
+                        <div class="col-xs-12 nopadding-right">
+                            <input type="text" class="form-control"
+                                   placeholder="Please enter the name of song, artist, or album for searching"
+                                   id="search_keyword_input">
+                        </div>
+                        <div class="col-xs-12 nopadding-right">
+                            <h5>
+                                <b>Sort: </b>
+                                <a class="sort_type active" data-type="default">Default</a> /
+                                <a class="sort_type" data-type="artist">Artist</a> /
+                                <a class="sort_type" data-type="album">Album</a> /
+                                <a class="sort_type" data-type="duration">Length</a>
+                            </h5>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="container-fluid">
+                        <table class="table">
+                            <thead>
+                            <th>Title</th>
+                            <th>Length</th>
+                            <th>Artist</th>
+                            <th>Album</th>
+                            <th>Add to Playlist</th>
+                            </thead>
+                            <tbody>
+                            {{#each songs}}
+                                <tr class="song_detail">
+                                    <td width="40%">{{title}}</td>
+                                    <td width="10%">{{length}}</td>
+                                    <td width="20%">{{artist}}</td>
+                                    <td width="20%">{{album}}</td>
+                                    <td width="10%"><span class="add_to_pl glyphicon glyphicon-plus-sign" data-id="{{id}}"></span></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="add_to_playlist_modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Select Playlist</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                    {{#each playlist}}
+                        <li class="playlist list-group-item select_playlist">{{name}}</li>
+                    {{/each}}
+                    </ul>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</template>
